@@ -1,0 +1,8 @@
+target/
+.git/
+.github/
+docs/
+e2e/
+graphql/
+*.md
+.gitignore
