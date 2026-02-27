@@ -36,6 +36,42 @@ Full usage of Apollo MCP Server is documented on the [user guide](https://www.ap
 
 These are all described on the user guide. Specific configuration options for the configuration file are documented in the [config file reference](https://www.apollographql.com/docs/apollo-mcp-server/config-file).
 
+## Running with Docker
+
+Build the image:
+
+```bash
+docker build -t apollo-mcp-server .
+```
+
+Run the container, mounting your schema and config files:
+
+```bash
+docker run -d \
+  --name apollo-mcp \
+  -p 8000:8000 \
+  -v /path/to/schema.graphqls:/data/schema.graphqls:ro \
+  -v /path/to/config.yaml:/data/config.yaml:ro \
+  -e APOLLO_MCP_SCHEMA__PATH=/data/schema.graphqls \
+  apollo-mcp-server /data/config.yaml
+```
+
+Manage the container:
+
+```bash
+# View logs
+docker logs -f apollo-mcp
+
+# Stop
+docker stop apollo-mcp
+
+# Start again
+docker start apollo-mcp
+
+# Remove
+docker rm -f apollo-mcp
+```
+
 ## Contributions
 
 Checkout the [contributor guidelines](https://github.com/apollographql/apollo-mcp-server/blob/main/CONTRIBUTING.md) for more information.
